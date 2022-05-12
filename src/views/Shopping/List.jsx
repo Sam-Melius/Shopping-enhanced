@@ -5,7 +5,7 @@ import { useItems } from '../../context/ItemProvider';
 
 export default function List() {
   const [newItem, setNewItem] = useState('');
-  const { items, handleAddItem } = useItems();
+  const { items, handleAddItem, handleUpdateItem } = useItems();
   
   const handleSubmit = (e) => {
       e.prevent.default();
@@ -28,7 +28,8 @@ export default function List() {
         {items.map((item) => (
            <li key={item.id}>
                <Item
-                  item={item} />
+                  item={item} 
+                  onUpdate={handleUpdateItem} />
 
            </li> 
         ))}

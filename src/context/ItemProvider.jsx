@@ -10,6 +10,16 @@ const itemReducer = (state, action) => {
                 { id: Date.now(), text: action.payload.text, bought: false },
                 ...state,
             ];
+        case 'UPDATE_ITEM':
+            return state.map((item) => {
+                if (item.id === action.payload.item.id) {
+                    const { bought, text } = action.payload.item;
+                
+                return {
+                    ...item, bought, text,
+                };
+                }
+            })
         return item;
     }
 }
@@ -23,9 +33,13 @@ export default function ItemProvider({ children }) {
     dispatch({ type: 'ADD_ITEM', payload: { text } });
   };
 
+  const handleUpdateItem = (item) => {
+      dispatch({ type: 'UPDATE_ITEM', payload: { item } });
+  };
+
   return (
     <ItemContext.Provider
-        value={{ items, handleAddItem }} >
+        value={{ items, handleAddItem, handleUpdateItem }} >
             {children}
         </ItemContext.Provider>
   );
