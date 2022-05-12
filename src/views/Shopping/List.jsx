@@ -5,10 +5,10 @@ import { useItems } from '../../context/ItemProvider';
 
 export default function List() {
   const [newItem, setNewItem] = useState('');
-  const { items, handleAddItem, handleUpdateItem } = useItems();
+  const { items, handleAddItem, handleUpdateItem, handleDeleteItem } = useItems();
   
   const handleSubmit = (e) => {
-      e.prevent.default();
+      e.preventDefault();
       handleAddItem(newItem);
       setNewItem('');
   }
@@ -29,7 +29,8 @@ export default function List() {
            <li key={item.id}>
                <Item
                   item={item} 
-                  onUpdate={handleUpdateItem} />
+                  onUpdate={handleUpdateItem}
+                  onDelete={handleDeleteItem} />
 
            </li> 
         ))}

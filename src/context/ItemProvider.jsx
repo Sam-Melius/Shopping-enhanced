@@ -19,10 +19,15 @@ const itemReducer = (state, action) => {
                     ...item, bought, text,
                 };
                 }
-            })
-        return item;
+                return item;
+            });
+        case 'DELETE_ITEM':
+            return state.filter((item) => item.id !== action.payload.id);
+            default:
+                throw new Error(`Action type ${action.type} not supported`);
+        
     }
-}
+};
 
 const ItemContext = createContext();
 
@@ -37,9 +42,12 @@ export default function ItemProvider({ children }) {
       dispatch({ type: 'UPDATE_ITEM', payload: { item } });
   };
 
+  const handleDeleteItem = (id) => {
+      dispatch({ type: 'DELETE_ITEM', payload: { id } });
+  }
   return (
     <ItemContext.Provider
-        value={{ items, handleAddItem, handleUpdateItem }} >
+        value={{ items, handleAddItem, handleUpdateItem, handleDeleteItem }} >
             {children}
         </ItemContext.Provider>
   );

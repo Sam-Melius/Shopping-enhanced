@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Item({ item, onUpdate }) {
+export default function Item({ item, onUpdate, onDelete }) {
   const [editing, setEditing] = useState(false);
 
   let content;
@@ -52,6 +52,10 @@ export default function Item({ item, onUpdate }) {
         }}
         />
     {content}
+    <button
+        type='button'
+        onClick={() => onDelete(item.id)}
+        aria-label={`Delete ${item.text}`}>DELETE</button>
     </div>
   )
 }
