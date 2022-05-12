@@ -1,13 +1,13 @@
 import { createContext, useContext, useReducer } from 'react';
 
-const initialItems = [{ id, text: 'Apples', bought: false }];
+const initialItems = [{ id: Date.now(), text: 'Apples', bought: false }];
 
 const itemReducer = (state, action) => {
     switch (action.type) {
         case 
             'ADD_ITEM':
             return [
-                { id, text: action.payload.text, bought: false },
+                { id: Date.now(), text: action.payload.text, bought: false },
                 ...state,
             ];
         return item;

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Item from '../../components/Item/Item';
+import { useItems } from '../../context/ItemProvider';
 
 
 export default function List() {
   const [newItem, setNewItem] = useState('');
+  const { items, handleAddItem } = useItems();
   
   const handleSubmit = (e) => {
       e.prevent.default();

@@ -1,7 +1,14 @@
-import React from 'react'
+import { useState } from 'react';
 
-export default function Item() {
+export default function Item({ item }) {
+
+  let content;
+  content = ( 
+      <p>{item.text}</p> )
+
   return (
-    <div>Item</div>
+    <div>
+    {content}
+    </div>
   )
 }
