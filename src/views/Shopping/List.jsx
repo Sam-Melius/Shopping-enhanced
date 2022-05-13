@@ -23,6 +23,7 @@ export default function List() {
             placeholder='Add item to shopping list'
             value={newItem}
             onChange={(e) => setNewItem(e.target.value)} />
+        <button type="submit">Submit</button>
     </form>
     <ul>
         {items.map((item) => (
